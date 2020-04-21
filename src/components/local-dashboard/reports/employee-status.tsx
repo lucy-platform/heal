@@ -5,6 +5,7 @@ function statusName(status:string) {
         case 'office': return 'Checked-In';
         case 'remote': return 'Remote';
         case 'leave': return 'On Leave';
+        case 'unknown': return 'Not Reported';
         default: return status;
     }
 }
@@ -21,12 +22,13 @@ interface IEmployee {
 interface IEmployeeStatusState {
     searchText: string;
     tempSearchText: string;
-    mode: '' | 'office' | 'remote' | 'leave' | 'search';
+    mode: '' | 'office' | 'remote' | 'leave' | 'search'|'unknown';
     loadingStats:boolean;
     loadingUsers:boolean;
     officeCount:number;
     leaveCount:number;
     remoteCount:number;
+    unknownCount:number;
     users:IEmployee[];
 
 }
@@ -41,6 +43,7 @@ export class EmployeeStatus extends React.Component<IEmployeeStatusProps, IEmplo
             leaveCount:0,
             remoteCount:0,
             officeCount:0,
+            unknownCount:0,
             loadingUsers:false,
             users:[],
         }
@@ -64,9 +67,9 @@ export class EmployeeStatus extends React.Component<IEmployeeStatusProps, IEmplo
             }
         });
         let json = await response.json();
-        this.setState({ loadingStats: false, officeCount: json.office, remoteCount: json.remote, leaveCount: json.leave });
+        this.setState({ loadingStats: false, officeCount: json.office, remoteCount: json.remote, leaveCount: json.leave,unknownCount:json.unknown });
     }
-    async loadUsers(mode:'office'|'remote'|'leave') {
+    async loadUsers(mode:'office'|'remote'|'leave'|'unknown') {
         await this.setStateAsync({loadingUsers:true});
         let response= await fetch(this.props.apiUrl + `/Lucy/UserStatus/users?mode=${mode}`,{
             
@@ -79,7 +82,7 @@ export class EmployeeStatus extends React.Component<IEmployeeStatusProps, IEmplo
         await this.setStateAsync({loadingUsers:false,users:json});
     }
 
-    showUsers(type:'office'|'remote'|'leave') {
+    showUsers(type:'office'|'remote'|'leave'|'unknown') {
         this.setState({mode:type},()=>{
             this.loadUsers(type).then(_ => {});
         });
@@ -88,11 +91,13 @@ export class EmployeeStatus extends React.Component<IEmployeeStatusProps, IEmplo
         let leaveCount: string = this.state.leaveCount + '';
         let officeCount: string = this.state.officeCount + '';
         let remoteCount: string = this.state.remoteCount + '';
+        let unknownCount: string = this.state.unknownCount + '';
 
         if (this.state.loadingStats) {
             leaveCount = '...';
             remoteCount = '...';
             officeCount = '...';
+            unknownCount = '...';
         }
         return (<>
             <div className={`back-button-container`}>
@@ -114,6 +119,11 @@ export class EmployeeStatus extends React.Component<IEmployeeStatusProps, IEmplo
                     <div className='bg' />
                     <div className='title'>Leave</div>
                     <div className='value'>{leaveCount}</div>
+                </div>
+                <div onClick={this.showUsers.bind(this, 'unknown')} className='stat unknown'>
+                    <div className='bg' />
+                    <div className='title'>Not Reported</div>
+                    <div className='value'>{unknownCount}</div>
                 </div>
             </div>
         </>);
