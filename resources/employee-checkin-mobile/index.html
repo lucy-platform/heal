@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="icon" href="https://static.iviva.com/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>Check-In</title>
+
+    <link href="https://static.iviva.com/v2/all.css" type="text/css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="header"></div>
+        <div class='form-done invisible'>
+            Submitted. Thanks!
+        </div>
+        <div class="form-container">
+            <h1 class="title">Check In Today</h1>
+
+            <div class="form">
+
+                <div class="form-group " >
+                    <label for="temperature" >Name</label>
+                    <input class="input" readonly type="text" name="temperature" id="temperature" value="Joe Smith" placeholder="" onkeyup="validateInput(this)" >
+                </div>
+
+                <input type='hidden' id='uk' value='1'>
+                <div class="form-group">
+                    <label for="email" >Email</label>
+                    <input class="input" readonly type="text" name="email" id="email" value="joe@ecyber.com" placeholder="Ex: abc@abc.com" onkeyup="validateInput(this)" >
+                </div>
+                <input type='hidden' id='status' value=''>
+                <div class='statii'>
+                    <div class='status remote' >
+                        <div class='bg' ></div>
+                        <div class='t'>Working Remotely</div>
+                    </div>
+                    <div class='status leave'>
+                        <div class='bg' ></div>
+                        <div class='t'>On Leave</div>
+                    </div>
+                </div>
+             
+
+                <div class="form-group" id="feedback">
+
+                </div>
+
+                <div class="button-container">
+                    <button type="button" class="submit-btn" name="submit" id="submit">submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
