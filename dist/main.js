@@ -19734,7 +19734,41 @@ class LocalDashboard extends React.Component {
                                 React.createElement("a", { className: 'action', href: 'https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public', target: '_blank' }, "Read more")))))));
     }
     renderScanningForm() {
-        return React.createElement(React.Fragment, null);
+        return React.createElement(React.Fragment, null,
+            React.createElement("div", { className: 'dialog-sheet', onClick: this.closeScanningForm }),
+            React.createElement("div", { className: 'dialog scann-form' },
+                React.createElement("div", { className: 'header' },
+                    React.createElement("div", { className: 'title' }, "New Screening Form"),
+                    React.createElement("div", { className: 'last' },
+                        React.createElement("div", { className: 'closer', onClick: this.closeScanningForm }))),
+                React.createElement("div", { className: 'body' },
+                    React.createElement("div", { className: "form-group" },
+                        React.createElement("label", { className: "label" }, "Name  "),
+                        React.createElement("input", { type: "text", name: "name", className: `input ${this.state.scannData.name.trim().length == 0 ? "" : "filled"} `, value: this.state.scannData.name, placeholder: "Example: John Doe", onChange: (event) => this.updateFormData(event, 'name') })),
+                    React.createElement("div", { className: "form-group" },
+                        React.createElement("label", { className: "label" }, "Id (if available) "),
+                        React.createElement("input", { type: "text", name: "id", className: `input ${this.state.scannData.id.trim().length == 0 ? "" : "filled"} `, value: this.state.scannData.id, placeholder: "Example: E123", onChange: (event) => this.updateFormData(event, 'id') })),
+                    React.createElement("div", { className: "form-group" },
+                        React.createElement("label", { className: "label" }, "Temperature"),
+                        React.createElement("input", { type: "text", name: "temperature", className: `input ${this.state.scannData.temperature.trim().length == 0 ? "" : "filled"} `, value: this.state.scannData.temperature, placeholder: "Example: 23", onChange: (event) => this.updateFormData(event, 'temperature') })),
+                    React.createElement("div", { className: "form-group", style: { display: 'none' } },
+                        React.createElement("label", { className: "label" }, "Location  "),
+                        React.createElement("input", { type: "text", name: "location", className: `input ${this.state.scannData.location.trim().length == 0 ? "" : "filled"} `, value: this.state.scannData.location, placeholder: "Example: Singapore", onChange: (event) => this.updateFormData(event, 'location') })),
+                    React.createElement("div", { className: "form-group" },
+                        React.createElement("label", { className: "label" }, "Countries Visited "),
+                        React.createElement("input", { type: "text", name: "lastvisited", className: `input ${this.state.scannData.lastVisitedCountry.trim().length == 0 ? "" : "filled"} `, value: this.state.scannData.lastVisitedCountry, placeholder: "Example: Kenya", onChange: (event) => this.updateFormData(event, 'lastVisited') })),
+                    React.createElement("div", { className: "form-group" }, this.state.scannData.feedback),
+                    React.createElement("div", { className: "form-group buttons" },
+                        React.createElement("button", { type: "button", className: `submit-button ${this.state.scannData.isValid ? "valid" : ""} `, onClick: this.submitForm },
+                            React.createElement("span", { className: "icon" }),
+                            this.state.scannData.buttonText)),
+                    React.createElement("div", { className: 'qrcodes' },
+                        React.createElement("div", { className: 'code' },
+                            React.createElement("img", { src: 'https://s3.amazonaws.com/ecyber.public/lucyinthesky.io/heal/qrcodes/qr-lobby.png' }),
+                            React.createElement("div", { className: 'caption' }, "Scan for Lobby Staff")),
+                        React.createElement("div", { className: 'code' },
+                            React.createElement("img", { src: 'https://s3.amazonaws.com/ecyber.public/lucyinthesky.io/heal/qrcodes/qr-user.png' }),
+                            React.createElement("div", { className: 'caption' }, "Scan for Users and Guests"))))));
     }
     renderEditForm() {
         return React.createElement(React.Fragment, null,

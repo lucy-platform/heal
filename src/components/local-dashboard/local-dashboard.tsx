@@ -451,7 +451,7 @@ class LocalDashboard extends React.Component<ILocalProps, ILocalState>  {
 
     renderScanningForm() {
         return <>
-            {/* <div className='dialog-sheet' onClick={this.closeScanningForm} />
+            <div className='dialog-sheet' onClick={this.closeScanningForm} />
             <div className='dialog scann-form'>
                 <div className='header'>
 
@@ -513,7 +513,7 @@ class LocalDashboard extends React.Component<ILocalProps, ILocalState>  {
                     </div>
 
                 </div>
-            </div> */}
+            </div>
 
         </>;
     }
@@ -583,7 +583,7 @@ class LocalDashboard extends React.Component<ILocalProps, ILocalState>  {
                         <div className="form-group">
                             <label className="label full-width" >Capture Image </label>
                             <div className="placeholder">
-                                <img src="images/camera.png" alt="camera"/>
+                                <img src="images/camera.png" alt="camera" />
                             </div>
                             <button className={`take-photo`}><span className={`icon`}></span> Take Photo </button>
                         </div>
@@ -1001,10 +1001,10 @@ class LocalDashboard extends React.Component<ILocalProps, ILocalState>  {
 
     toggleReportsView() {
         if (this.state.view == "all") {
-        this.setState({view: "reports"});
+            this.setState({ view: "reports" });
         }
         else {
-            this.setState({view: "all"})
+            this.setState({ view: "all" })
         }
     }
 
@@ -1123,7 +1123,7 @@ class LocalDashboard extends React.Component<ILocalProps, ILocalState>  {
                         </div>
 
                         :
-                        <div className="scanning-button">
+                        <div className="scanning-button" >
                             <img src="https://s3.amazonaws.com/ecyber.public/lucyinthesky.io/heal/images/footer-icon.svg" alt="qr-code-button" className={``} onClick={() => this.setState({ dialog: "scann" })} />
                         </div>
                 }
